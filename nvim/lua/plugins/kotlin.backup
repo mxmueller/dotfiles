@@ -1,0 +1,23 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        kotlin_language_server = {
+          -- Zeige auf die selbst-gebaute Version
+          cmd = {
+            vim.fn.expand(
+              "~/language_servers/kotlin-language-server/server/build/install/server/bin/kotlin-language-server"
+            ),
+          },
+          root_dir = function(fname)
+            local util = require("lspconfig.util")
+            return util.root_pattern("settings.gradle", "settings.gradle.kts", "build.gradle", "build.gradle.kts")(
+              fname
+            )
+          end,
+        },
+      },
+    },
+  },
+}

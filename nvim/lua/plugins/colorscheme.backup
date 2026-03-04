@@ -1,0 +1,84 @@
+return {
+  {
+    "sainnhe/sonokai",
+    priority = 1000,
+    lazy = false,
+    config = function()
+      vim.g.sonokai_transparent_background = 1
+      vim.g.sonokai_enable_italic = 1
+      vim.g.sonokai_style = "andromeda"
+      vim.g.sonokai_dim_inactive_windows = 0
+      vim.cmd.colorscheme("sonokai")
+
+      -- Erweiterte Transparenz-Fixes
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "sonokai",
+        callback = function()
+          -- Basis Transparenz
+          vim.api.nvim_set_hl(0, "Normal", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NormalNC", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "SignColumn", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "NONE" })
+
+          -- Tab-Transparenz
+          vim.api.nvim_set_hl(0, "TabLine", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "TabLineFill", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "TabLineSel", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "WinBar", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "WinBarNC", { bg = "NONE" })
+
+          -- Neo-tree Transparenz (alle möglichen Gruppen)
+          vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeNormalNC", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeWinSeparator", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeEndOfBuffer", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeRootName", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeStatusLine", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeStatusLineNC", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeTitleBar", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeFloatTitle", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeFloatBorder", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreePopupBorder", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeTabInactive", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeTabActive", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorInactive", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NeoTreeTabSeparatorActive", { bg = "NONE" })
+
+          -- Lualine Transparenz
+          vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+
+          -- Float/Popup Transparenz
+          vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "NormalFloat", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "Pmenu", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "PmenuSbar", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "PmenuThumb", { bg = "NONE" })
+
+          -- Telescope Transparenz
+          vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "TelescopeTitle", { bg = "NONE" })
+
+          -- Notification Transparenz
+          vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "NONE" })
+
+          -- Window separator
+          vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+          vim.api.nvim_set_hl(0, "VertSplit", { bg = "NONE" })
+        end,
+      })
+
+      -- Sofort nach dem Laden des Colorschemes anwenden
+      vim.defer_fn(function()
+        vim.cmd("doautocmd ColorScheme sonokai")
+      end, 50)
+    end,
+  },
+  {
+    "LazyVim/LazyVim",
+    opts = {
+      colorscheme = "sonokai",
+    },
+  },
+}
